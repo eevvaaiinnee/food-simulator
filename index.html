@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>今天吃啥</title>
+<!-- LXGW WenKai 霞鹜文楷 — one handwritten-feel family for Chinese + English (OFL) -->
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/lxgwwenkai-regular.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.7.0/lxgwwenkai-bold.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <h1>今天吃啥</h1>
+    <div class="searchgroup">
+      <input id="search" type="search" placeholder="Search" autocomplete="off">
+      <button id="modeBtn" class="link" title="When several tags are selected: show foods with all of them, or any of them">match all</button>
+      <span class="sep">·</span>
+      <span id="count"></span>
+      <button id="clearFilters" class="link" hidden>clear</button>
+    </div>
+    <button id="filterBtn" class="pillbtn" aria-expanded="false" aria-controls="filters">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M7 12h10M10 18h4"/></svg>
+      <span>Filters</span><span id="filterCount" class="badge"></span>
+    </button>
+    <button id="drawBtn" class="pillbtn" title="Pick something at random from the current filters, or everything">
+      <span aria-hidden="true">🎲</span><span>今天吃啥?</span>
+    </button>
+    <button id="cartBtn" class="pillbtn" aria-expanded="false" aria-controls="cart">
+      <svg viewBox="0 0 64 64" width="20" height="20" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 10h8l7 30h30l6-20H18"/><circle cx="25" cy="50" r="4"/><circle cx="47" cy="50" r="4"/></svg>
+      <span>Shopping Cart</span><span id="cartCount" class="badge"></span>
+    </button>
+  </header>
+  <aside id="filters" class="panel" aria-label="Filters">
+    <div class="fgroup"><h3>Categories</h3><div id="catChips" class="chips"></div></div>
+    <div class="fgroup"><h3>Tags</h3><div id="tagChips" class="chips"></div></div>
+  </aside>
+  <main id="viewport">
+    <div id="world"></div>
+    <div id="viewtools"><button id="copyLayout" title="Copy every food's position so Claude can make it the default">⧉ copy layout</button><button id="tidyBtn" title="Put everything back in its default place">↺ tidy up</button></div>
+  </main>
+
+  <aside id="cart" class="panel empty" aria-label="Shopping cart">
+    <ol id="cartList"></ol>
+    <div id="cartEmpty">
+      <span>Nothing here yet</span>
+      <small>click food in the kitchen, or drag it onto the cart button</small>
+    </div>
+    <div class="cartfoot"><button id="clearCart" class="link">empty cart</button></div>
+  </aside>
+</div>
+
+<div id="drawCard" role="dialog" aria-live="polite"></div>
+<div id="label"></div>
+<div id="ghost"></div>
+<div id="toast"></div>
+
+<script src="foods.js"></script>
+<script src="layout.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
